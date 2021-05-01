@@ -1,3 +1,15 @@
-.tamaño{
-   width: 18rem;
-}
+body {
+   
+    background-color: lightseagreen;
+  }
+
+  #titulo{
+    color: rgb(253, 254, 255);
+  }
+
+  #carrito{
+    color: rgb(253, 254, 255);
+  }
+  tr{
+    color: rgb(253, 254, 255);
+  }
