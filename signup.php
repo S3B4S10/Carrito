@@ -9,8 +9,9 @@ $message = '';
     $stmt->bindParam(':nombre', $_POST['nombre']);
     $stmt->bindParam('apellido', $_POST['apellido']);
     $stmt->bindParam(':mail', $_POST['mail']);
-    $password = password_hash($_POST['clave'], PASSWORD_BCRYPT);
-    $stmt->bindParam(':clave', $password);
+    //$password = password_hash($_POST['clave'], PASSWORD_BCRYPT);
+    //$stmt->bindParam(':clave', $password);
+    $stmt->bindParam(':clave', $_POST['clave']);
 
     if ($stmt->execute()) {
       $message = '!!Nuevo usuario registrado!!';

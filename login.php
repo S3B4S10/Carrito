@@ -1,5 +1,4 @@
 <?php
-  session_start();
 
   require 'connectdb.php';
 
@@ -9,11 +8,10 @@
     $stmt->execute();
     $stmtexe = $stmt->fetch(PDO::FETCH_ASSOC);
     $message = '';
-    echo count($stmtexe);
 
-    if (count($stmtexe) > 0 && password_verify($_POST['clave'], $stmtexe['clave'])) {
-      $_SESSION['nombre'] = $stmtexe['nombre'];
-      header("Location: /index.php");
+    if (count($stmtexe) > 0 && ($_POST['clave'] == $stmtexe['clave'])) {
+      header("Location:  CarritoCompras.html");
+      
     } else {
       $message = 'Usuario o contraseña incorrecta';
     }
@@ -29,6 +27,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <link rel="stylesheet" href="estilos.css">
+
+
+
+
 </head>
 <body>
   <?php if(!empty($message)){ ?>

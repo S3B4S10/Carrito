@@ -17,9 +17,7 @@ function all () {
 
     botones.forEach(btn =>{
         btn.addEventListener('click',()=>{
-            
-           
-                const producto= []
+            const producto= []
                 producto.name=btn.parentElement.children.item(0).innerHTML;
                 producto.price=btn.parentElement.children.item(1).innerHTML;
                 producto.id=btn.parentElement.parentElement.id;
@@ -27,16 +25,12 @@ function all () {
                 producto.cantidad=1;
 
                 console.log(producto.iva);
-               if(carrito.hasOwnProperty(producto.id)){
-                   
+            if(carrito.hasOwnProperty(producto.id)){
+                
                 producto.cantidad=carrito[producto.id].cantidad + 1;
-               }
-            
-               carrito[producto.id]={...producto}
-              
-               llenarCarrito();
-           
-            
+            }
+            carrito[producto.id]={...producto}     
+            llenarCarrito();
         })
     })
     const llenarCarrito = () => {
@@ -45,9 +39,6 @@ function all () {
        
 
         Object.values(carrito).forEach(producto => {
-          
-          
- 
           
           templateCarrito.getElementById('idProducto').textContent = producto.id;
           templateCarrito.getElementById('name').textContent = producto.name;
