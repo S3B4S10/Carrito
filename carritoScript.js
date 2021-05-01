@@ -8,7 +8,9 @@ function all () {
  const botones = document.querySelectorAll('.card a');
  let carrito = {};
  const items = document.getElementById('items')
- const footer = document.querySelector('#footer-carrito')
+ const totales = document.getElementById('totales')
+ const fragmentTotales = document.createDocumentFragment()
+
 
     botones.forEach(btn =>{
         btn.addEventListener('click',()=>{
@@ -58,8 +60,41 @@ function all () {
         })
         
     items.appendChild(fragment)
+    totales.innerHTML = ''
 
-    //llenarCarrito()
+    if (Object.keys(carrito).length === 0) {
+        totales.innerHTML = `
+        <th scope="row" colspan="5">Carrito vacío con innerHTML</th>
+        `
+        return
+    }
+
+    const template1 = document.querySelector('#template-footer').content
+    
+
+    // sumar cantidad y sumar totales
+    const nCantidad = Object.values(carrito).reduce((acc, { cantidad }) => acc + cantidad, 0)
+    const nPrecio = Object.values(carrito).reduce((acc, {cantidad, precio}) => acc + cantidad * precio ,0)
+    // console.log(nPrecio)
+
+    template1.querySelectorAll('td')[0].textContent = nCantidad
+    template1.querySelector('span').textContent = nPrecio
+
+    const clone = template1.cloneNode(true)
+    fragmentTotales.appendChild(clone)
+
+    totales.appendChild(fragmentTotales)
+
+
+    const boton = document.querySelector('#vaciar-carrito')
+    boton.addEventListener('click', () => {
+        carrito = {}
+        totales.innerHTML = `
+        <th scope="row" colspan="5">Carrito vacío con innerHTML</th>
+        `
+       items.innerHTML = '';
+    })
+      
     //controlCantidad()
 
     }
