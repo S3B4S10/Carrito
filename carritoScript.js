@@ -4,6 +4,7 @@ window.onload = function main() {
 
 }
 
+
 function all () {
  const botones = document.querySelectorAll('.card a');
  let carrito = {};
@@ -82,10 +83,20 @@ function all () {
 
     const boton = document.querySelector('#vaciar-carrito')
     boton.addEventListener('click', () => {
-       /* carrito = {};
-        totales.innerHTML ='';
-       items.innerHTML = '';*/
+         mensaje=""
+        i =0;
+        Object.values(carrito).forEach(producto => {
+          mensaje+="* "+producto.name +" Cantidad: "+ producto.cantidad+ " Precio: $" +(producto.price*producto.cantidad)+ "\n" ;
+           i++;
+          })
 
+          console.log(mensaje)
+
+       emailjs.send("service_mh9y83w","enviar-correos",{
+        to_name: "Sebastian",
+        message: mensaje,
+        to_email: "juan-mendez7@upc.edu.co",
+        });
        
     })
       
