@@ -1,19 +1,26 @@
 <?php
 
+session_start();
+
   require 'connectdb.php';
 
   if (!empty($_POST['mail']) && !empty($_POST['clave'])) {
-    $stmt = $conn->prepare('SELECT userId, mail, clave FROM usuario WHERE mail = :mail');
+    $stmt = $conn->prepare('SELECT userId, userNombre, mail, clave FROM usuario WHERE mail = :mail');
     $stmt->bindParam(':mail', $_POST['mail']);
     $stmt->execute();
     $stmtexe = $stmt->fetch(PDO::FETCH_ASSOC);
-    $message = '';
+ 
+    $nombre = $stmtexe['userNombre'];
+    $mail = $stmtexe['mail'];
+    
 
     if (count($stmtexe) > 0 && ($_POST['clave'] == $stmtexe['clave'])) {
-      header("Location:  CarritoCompras.html");
-      
+      $_SESSION['nombre'] = $nombre;
+      $_SESSION['mail'] = $mail;
+      header("Location: carritoCompras.php");
+      echo "ok";
     } else {
-      $message = 'Usuario o contraseña incorrecta';
+      echo "Usuario o contraseña incorrecta";
     }
   }
 
