@@ -18,7 +18,6 @@ function all () {
     const userName = document.getElementById('nombreSpan').innerText;
     const userMail = document.getElementById('mailSpan').innerText;
 
-         
     if (localStorage.length>0){
         for(j=0; j<localStorage.length; j++){
             carrito[JSON.parse(localStorage.getItem(j)).id]={...JSON.parse(localStorage.getItem(j))};
@@ -163,7 +162,7 @@ function all () {
         const boton = document.getElementById('comprar');
         boton.addEventListener('click', () => {
             mensaje="";
-            i=0;
+            i=0; 
             Object.values(carrito).forEach(producto => {
                 value = JSON.stringify({"id" : producto.id, "name": producto.name, "price": producto.price, "cantidad": producto.cantidad, "iva" : producto.iva});
                 localStorage.setItem(i,value);
@@ -180,7 +179,7 @@ function all () {
                     });                  
                     totales.innerHTML = "";
                     carrito = {};
-                    items.innerHTML = "";    
+                    items.innerHTML = "";   
                 }
         });
         controlCantidad();
