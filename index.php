@@ -11,7 +11,7 @@
   <title>Document</title>
   <link rel="stylesheet" href="estilos.css">  
 </head>
-<body>
+<body> 
   <h1>Redireccionando...</h1>
 </body>
 </html>
