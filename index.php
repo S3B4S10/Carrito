@@ -1,3 +1,7 @@
+<?php
+ header('Location: carritoCompras.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +10,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="estilos.css">  
-  </head>
+</head>
 <body>
-  <a href="login.php">login</a> or <a href="signup.php">Sign up</a>
+  <h1>Redireccionando...</h1>
 </body>
 </html>
