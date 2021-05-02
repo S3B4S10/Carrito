@@ -153,7 +153,7 @@
         <td class="font-weight-bold">$ <span id="valorTotal"></span>
         
         <?php if(isset($_SESSION['nombre'])){?>
-          <button class="btn btn-dark" id="comprar">
+          <button class="btn btn-dark" id="comprar"> 
             Comprar
           </button>
         <?php }else{ ?>

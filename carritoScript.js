@@ -163,7 +163,7 @@ function all () {
         boton.addEventListener('click', () => {
             mensaje="";
             i=0; 
-            Object.values(carrito).forEach(producto => {
+            Object.values(carrito).forEach(producto => { 
                 value = JSON.stringify({"id" : producto.id, "name": producto.name, "price": producto.price, "cantidad": producto.cantidad, "iva" : producto.iva});
                 localStorage.setItem(i,value);
                 mensaje += "- " + producto.name +" Cantidad: "+ producto.cantidad+ " Precio: $"+ (producto.price * producto.cantidad)+ "\n" ;
