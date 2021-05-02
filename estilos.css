@@ -50,6 +50,10 @@ input[type="submit"], #buttonSalir {
   cursor: pointer;
 }
 
+.invisible{
+  display: none;
+}
+
 input[type="submit"]:hover {
   background-color: #01707a;
 }

@@ -12,7 +12,7 @@ session_start();
  
     $nombre = $stmtexe['userNombre'];
     $mail = $stmtexe['mail'];
-    
+
 
     if (count($stmtexe) > 0 && ($_POST['clave'] == $stmtexe['clave'])) {
       $_SESSION['nombre'] = $nombre;

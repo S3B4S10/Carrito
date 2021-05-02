@@ -9,32 +9,45 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width,initial-scale=1.0">
-<title>Parcial</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-<link href="estilos.css" rel="stylesheet" >
+  <meta charset="UTF-8">
+  <meta name="viewport"
+  content="width=device-width,initial-scale=1.0">
+  <title>Parcial</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <link href="estilos.css" rel="stylesheet" >
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+  <script type="text/javascript"> (function() {
+  emailjs.init("user_2BplPpMaxnCuawlrJ4zwd");
+  })();
+  </script>
 </head>
 <body>
      
 <?php if(isset($_SESSION['nombre'])){?>
-    <h1 id="h1-session">Hola de nuevo <?= $_SESSION['nombre'];?>, gusto en verte por estos lares! </h1><br>
-    
+    <h1 id="h1-session">Hola de nuevo
+      <span id="nombreSpan"><?= $_SESSION['nombre'];?></span>
+      , gusto en verte por estos lares!
+      <span class="invisible" id="mailSpan"><?= $_SESSION['mail'];?></span>
+    </h1>
 <?php }else {?>
-<a href="login.php">
-<button type="button" class="btn btn-primary position-relative">
-  Login <span class="position-absolute top-0 start-100 translate-middle"><span class="visually-hidden">unread messages</span></span>
-</button>
-</a>
+  <a href="login.php">
+  <button type="button" class="btn btn-primary position-relative">
+    Login <span class="position-absolute top-0 start-100 translate-middle"><span class="visually-hidden">unread messages</span></span>
+  </button>
+  </a>
 
-<a href="signup.php">
-<button type="button" class="btn btn-primary position-relative">
-  Registro <span class="position-absolute top-0 start-100 translate-middle"><span class="visually-hidden">unread messages</span></span>
-</button>
-</a>
-
+  <a href="signup.php">
+  <button type="button" class="btn btn-primary position-relative">
+    Registro <span class="position-absolute top-0 start-100 translate-middle"><span class="visually-hidden">unread messages</span></span>
+  </button>
+  </a>
+    <h1 id="h1-session">
+      <span class="invisible" id="nombreSpan">#</span>
+      <span class="invisible" id="mailSpan">#</span>
+    </h1>
 <?php } ?>
+<br>
+<br>
 <h1 class="text-center" id="titulo">-------------------
  Tienda JyS
 -------------------</h1><br>
@@ -138,9 +151,18 @@ content="width=device-width,initial-scale=1.0">
             
         </td>
         <td class="font-weight-bold">$ <span id="valorTotal"></span>
-            <button class="btn btn-dark" id="vaciar-carrito">
+          <?php if(isset($_SESSION['nombre'])){?>
+            
+            <button class="btn btn-dark" id="comprar">
                 Comprar
             </button>
+          <?php }else{ ?>
+            <a href="login.php">
+            <button class="btn btn-dark" id="comprar">
+              Comprar
+            </button>
+          </a>
+          <?php } ?>
         </td>
     </template>
     
