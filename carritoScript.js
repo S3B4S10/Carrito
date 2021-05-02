@@ -135,10 +135,10 @@ function all () {
 
         botonesEliminar.forEach(btn => {
             btn.addEventListener('click', () => {
-                // console.log('eliminando...')
+                // consoles.log('eliminando...')
                 const producto = carrito[btn.dataset.id];
                 producto.cantidad--;
-                if (producto.cantidad === 0) {
+                if (producto.cantidad === 0) {  
                     delete carrito[btn.dataset.id];
                 } else {
                     carrito[btn.dataset.id] = { ...producto };
