@@ -6,7 +6,8 @@ window.onload = function main() {
 
 
 function all () {
-    
+    value ="";
+    const producto= [];
     const botones = document.querySelectorAll('.card a');
     let carrito = {};
     const items = document.getElementById('items');
@@ -18,9 +19,20 @@ function all () {
     const userName = document.getElementById('nombreSpan').innerText;
     const userMail = document.getElementById('mailSpan').innerText;
 
+    if (!localStorage.empty){
+
+        for( j = 0; j<localStorage.length; j++ ){
+            producto.name = localStorage.key(1);
+            
+            console.log("producto.name" + producto.name);
+        }
+
+    }
+    
+
+
     botones.forEach(btn =>{
         btn.addEventListener('click',()=>{
-            const producto= [];
             producto.name=btn.parentElement.children.item(0).innerHTML;
             producto.price=btn.parentElement.children.item(1).innerHTML;
             producto.id=btn.parentElement.parentElement.id;
@@ -34,6 +46,7 @@ function all () {
             carrito[producto.id]={...producto};
             llenarCarrito();
         });
+       
     });
     const llenarCarrito = () => {
         items.innerHTML = '';
@@ -76,12 +89,15 @@ function all () {
 
         boton.addEventListener('click', () => {
             mensaje="";
-            i =0;
+            
             Object.values(carrito).forEach(producto => {
-                mensaje += "- " + producto.name +" Cantidad: "+ producto.cantidad+ " Precio: $"
-                + (producto.price * producto.cantidad)+ "\n" ;
-                i++;
+                value += JSON.stringify({"id" : producto.id, "nombre": producto.name, "precio": producto.price, "cantidad": producto.cantidad, "iva" : producto.iva});
+
+                mensaje += "- " + producto.name +" Cantidad: "+ producto.cantidad+ " Precio: $"+ (producto.price * producto.cantidad)+ "\n" ;
             });
+            console.log("value" + value);
+            localStorage.setItem('productos',value);
+
             console.log(mensaje);
 
             if(userName != "#"){
@@ -131,5 +147,17 @@ function all () {
             })
         })
     }
-   
+   /*  <?php if(isset($_SESSION['nombre'])){?>
+            
+            <button class="btn btn-dark" id="comprar">
+                Comprar
+            </button>
+          <?php }else{ ?>
+            <a href="login.php">
+            <button class="btn btn-dark" id="comprar">
+              Comprar
+            </button>
+          </a>
+          <?php } ?>
+        */
 }
